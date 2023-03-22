@@ -72,9 +72,9 @@ def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, en
                 'brand': brand}
     X = pipeline.transform(pd.DataFrame(data=input_data, index=range(1)))
     print(X)
-    print(type(model))
+    print(str(type(model)))
     #return model.predict(X)
-    return 10
+    return str(type(model))
 
 
 
