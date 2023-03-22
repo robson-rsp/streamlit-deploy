@@ -71,7 +71,7 @@ def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, en
                 'enginesize': enginesize, 
                 'brand': brand}
     X = pipeline_transformer.transform(pd.DataFrame(data=input_data, index=range(1)))
-    return model_rforest.predict(X)
+    return model_rforest.predict(X)[0]
 
 
 
