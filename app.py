@@ -4,17 +4,7 @@ import streamlit as st
 
 
 
-model    = joblib.load('model.pkl.z')
-pipeline = joblib.load('pipeline.pkl.z')
-
-
-
 class FeaturesRenamer(BaseEstimator, TransformerMixin):
-    """
-    Esta classe deve ser colocada diretamente dentro de um Pipeline.
-    Quando 'get_feature_names_out()' é chamado ele concatena o nome do transformador ao nome de cada coluna
-    que passará pela transformação. Esta classe desfaz isso retornando os nomes originais.
-    """
     def __init__(self, original_names):
         if isinstance(original_names, list):
             self.original_names = original_names
@@ -36,9 +26,6 @@ class FeaturesRenamer(BaseEstimator, TransformerMixin):
 
 
 class OutliersZScoreReplacer(BaseEstimator, TransformerMixin):
-    """
-    Substitui os outliers encontrados pelas medianas de cada atributo.
-    """
     def fit(self, X, y=None):
         self.mean_std_median = list()
         for name in X.columns:
@@ -62,6 +49,11 @@ class OutliersZScoreReplacer(BaseEstimator, TransformerMixin):
         return X
     def get_feature_names_out(self):
         pass
+
+
+
+model    = joblib.load('model.pkl.z')
+pipeline = joblib.load('pipeline.pkl.z')
 
 
 
