@@ -54,8 +54,8 @@ class OutliersZScoreReplacer(BaseEstimator, TransformerMixin):
 
 
 
-model    = pkl.load(open('model_rforest.pkl', 'rb'))
-pipeline = pkl.load(open('pipeline_transformer.pkl', 'rb'))
+model_rforest        = pkl.load(open('model_rforest.pkl', 'rb'))
+pipeline_transformer = pkl.load(open('pipeline_transformer.pkl', 'rb'))
 
 
 @st.cache_data
@@ -70,11 +70,8 @@ def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, en
                 'mpg': mpg, 
                 'enginesize': enginesize, 
                 'brand': brand}
-    X = pipeline.transform(pd.DataFrame(data=input_data, index=range(1)))
-    print(X)
-    print(str(type(model)))
-    #return model.predict(X)
-    return str(model)
+    X = pipeline_transformer.transform(pd.DataFrame(data=input_data, index=range(1)))
+    return model_rforest.predict(X)
 
 
 
