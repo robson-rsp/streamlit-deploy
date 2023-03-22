@@ -63,7 +63,7 @@ def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, en
     input_data = {'model': model, 
                 'year': year, 
                 'price': price, 
-                'tranmission': transmission, 
+                'transmission': transmission, 
                 'mileage': mileage, 
                 'fueltype': fueltype, 
                 'tax': tax, 
