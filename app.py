@@ -5,7 +5,7 @@ import streamlit as st
 
 
 model    = joblib.load('model.pkl.z')
-pipeline = joblib.load('pipeline_full.pkl.z')
+pipeline = joblib.load('pipeline.pkl.z')
 
 
 
