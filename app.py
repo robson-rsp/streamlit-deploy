@@ -1,5 +1,6 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 import joblib
+import pandas as pd
 import streamlit as st
 
 
@@ -59,27 +60,43 @@ pipeline = joblib.load('pipeline.pkl.z')
 
 @st.cache_data
 def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, enginesize, brand):
-  pass
+    input_data = {'model': model, 
+                'year': year, 
+                'price': price, 
+                'tranmission': transmission, 
+                'mileage': mileage, 
+                'fueltype': fueltype, 
+                'tax': tax, 
+                'mpg': mpg, 
+                'enginesize': enginesize, 
+                'brand': brand}
+    X = pipeline.transform(pd.DataFrame(data=input_data, index=range(1)))
+    return model.predict(X)
 
 
 
 def main():
-  html_temp = """
-  <div style="background-color:yellow; padding:13px>
-  <h1 style="color:black;text-align:center;">Streamlit - Car pricing - ML App</h1>
-  </div>
-  """
+  html_temp = """<div style="background-color:yellow; padding:13px>
+                     <h1 style="color:black;text-align:center;">Streamlit - Car pricing - ML App</h1>
+                 </div>"""
   st.markdown(html_temp, unsafe_allow_html=True)
 
+  brand = st.selectbox('Marca', ('skoda', 'ford', 'vw', 'bmw', 'vauxhall', 'audi', 'toyota', 'mercedes', 'hyundi'))
   model = st.selectbox('Modelo', (' Scala', ' C-MAX', ' Mondeo', ' Golf', ' 1 Series', ' 3 Series',' Mokka X', ' A4', ' Tiguan', ' A3', ' A6', ' Aygo', ' Q3', ' Beetle', ' A1', ' Focus', ' Fiesta', ' GLA Class', ' Astra', ' C-HR', ' 6 Series', ' EcoSport', ' A5', ' Corsa', ' Viva', ' TT', ' GLE Class', ' 4 Series', ' IX20', ' RAV4', ' GLC Class', ' Kuga', ' CL Class', ' 5 Series', ' Grand C-MAX', ' Kona', ' I30', ' I20', ' GT86', ' C Class', ' Octavia', ' Polo', ' Jetta', ' A Class', ' Verso', ' Crossland X', ' Zafira', ' Insignia', ' Antara', ' Grand Tourneo Connect', ' B Class', ' Up', ' Corolla', ' E Class', ' X6', ' I10', ' X2', ' Passat', ' X1', ' Tucson', ' 2 Series', ' Golf SV', ' Yeti Outdoor', ' T-Roc', ' Mokka', ' Ka+', ' Superb', ' Grandland X', ' Kodiaq', ' Q7', ' Citigo', ' V Class', ' Q5', ' Rapid', ' Santa Fe', ' Q2', ' CC', ' Puma', ' Edge', ' Prius', ' Arteon', ' Yaris', ' Auris', ' T-Cross', ' California', ' Touran', ' Touareg', ' Fabia', ' Combo Life', ' Adam', ' SLK', ' SL CLASS', ' Sharan', ' X4', ' S-MAX', ' GL Class', ' S Class', ' I800', ' Karoq', ' X3', ' CLS Class', ' Caddy Maxi Life', ' Scirocco', ' SQ5', ' Hilux', ' Vivaro', ' Ioniq', ' Vectra', ' X-CLASS', ' Kamiq', ' M2', ' KA', ' 7 Series', ' IQ', ' A7', ' X5', ' Galaxy', ' A8', ' RS6', ' Tourneo Custom', ' B-MAX', ' Tiguan Allspace', ' Tourneo Connect', ' GTC', ' Caravelle', ' Caddy Life', ' GLB Class', ' Getz', ' X7', ' Meriva', ' M5', ' M Class', ' Z4', ' Land Cruiser', ' Avensis', ' Agila', ' M4', ' Q8', ' RS3', ' I40', ' IX35', ' Yeti', ' RS5', ' Amarok', ' Ampera', ' i3', ' Shuttle', ' M3', ' Zafira Tourer', ' PROACE VERSO', ' 8 Series', ' G Class', ' CLA Class', ' S4', ' GLS Class', ' RS7', ' Mustang', ' SQ7', ' Cascada', ' Supra', ' R8', ' S3', ' RS4', ' Camry', ' Fusion', ' S8', ' Caddy Maxi', ' Roomster', ' Z3', ' R Class', ' Eos', ' Kadjar', ' i8', ' Fox', ' Caddy', ' Transit Tourneo', '200', ' S5', ' Tigra', ' Urban Cruiser', ' Ranger', ' CLK', ' Amica', ' Escort', ' Terracan', ' M6', ' Veloster', ' Accent', '180', ' CLC Class', ' Verso-S', ' A2'))
   year = st.selectbox('Ano', (2019, 2016, 2015, 2017, 2018, 2012, 2020, 2013, 2014, 2008, 2005, 2009, 2003, 2007, 2011, 2010, 2006, 2004, 1999, 2000, 2001, 2002, 1998, 2060, 1997, 1995, 1996, 1970))
   transmission = st.selectbox('Transmissao', ('Automatic', 'Manual', 'Semi-Auto', 'Other'))
-  mileage = st.number_input('Kilometragem')
+  enginesize = st.selectbox('Motor', (1. , 2. , 1.4, 1.6, 3. , 2.1, 1.8, 1.5, 2.5, 1.2, 1.1, 4. , 1.7, 2.2, 1.3, 1.9, 2.9, 2.4, 2.3, 0. , 6.2, 3.2, 3.5, 4.7, 4.4, 2.7, 6. , 2.8, 5. , 5.2, 5.5, 6.6, 4.2, 0.6, 2.6, 3.6, 3.7, 4.3, 5.4, 6.3))
   fueltype = st.selectbox('Combustível', ('Petrol', 'Diesel', 'Hybrid', 'Other', 'Electric'))
+  mileage = st.number_input('Kilometragem')
   tax = st.number_input('Tax')
   mpg = st.number_input('Km/Litro')
-  enginesize = st.selectbox('Motor', (1. , 2. , 1.4, 1.6, 3. , 2.1, 1.8, 1.5, 2.5, 1.2, 1.1, 4. , 1.7, 2.2, 1.3, 1.9, 2.9, 2.4, 2.3, 0. , 6.2, 3.2, 3.5, 4.7, 4.4, 2.7, 6. , 2.8, 5. , 5.2, 5.5, 6.6, 4.2, 0.6, 2.6, 3.6, 3.7, 4.3, 5.4, 6.3))
-  brand = st.selectbox('Marca', ('skoda', 'ford', 'vw', 'bmw', 'vauxhall', 'audi', 'toyota', 'mercedes', 'hyundi'))
-  
+  price = 0
+
+  if st.button('Definir preço'):
+    result = prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, enginesize, brand)
+    st.success(f'O preço sugerido é R${result}')
+
+
+
 if __name__ == '__main__':
   main()
