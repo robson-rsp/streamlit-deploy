@@ -74,7 +74,7 @@ def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, en
     print(X)
     print(str(type(model)))
     #return model.predict(X)
-    return str(X))
+    return str(X)
 
 
 
