@@ -57,7 +57,8 @@ class OutliersZScoreReplacer(BaseEstimator, TransformerMixin):
 model    = joblib.load('model.pkl.z')
 pipeline = joblib.load('pipeline.pkl.z')
 
-
+if isinstance(model, str):
+    model = joblib.load(model)
 
 @st.cache_data
 def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, enginesize, brand):
