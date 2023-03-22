@@ -88,7 +88,7 @@ def main():
   enginesize = st.selectbox('Motor', (1. , 2. , 1.4, 1.6, 3. , 2.1, 1.8, 1.5, 2.5, 1.2, 1.1, 4. , 1.7, 2.2, 1.3, 1.9, 2.9, 2.4, 2.3, 0. , 6.2, 3.2, 3.5, 4.7, 4.4, 2.7, 6. , 2.8, 5. , 5.2, 5.5, 6.6, 4.2, 0.6, 2.6, 3.6, 3.7, 4.3, 5.4, 6.3))
   fueltype = st.selectbox('Combustível', ('Petrol', 'Diesel', 'Hybrid', 'Other', 'Electric'))
   mileage = st.number_input('Kilometragem')
-  tax = st.number_input('Tax')
+  tax = st.number_input('Licenciamento')
   mpg = st.number_input('Km/Litro')
   price = 0
 
