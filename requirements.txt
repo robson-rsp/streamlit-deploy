@@ -108,7 +108,7 @@ google-cloud-firestore==2.7.3
 google-cloud-language==2.6.1
 google-cloud-storage==2.7.0
 google-cloud-translate==3.8.4
-google-colab @ file:///colabtools/dist/google-colab-1.0.0.tar.gz
+google-colab==1.0.0
 google-crc32c==1.5.0
 google-pasta==0.2.0
 google-resumable-media==2.4.1
@@ -330,6 +330,9 @@ sortedcontainers==2.4.0
 soundfile==0.12.1
 soupsieve==2.4
 soxr==0.3.4
+spacy==3.5.1
+spacy-legacy==3.0.12
+spacy-loggers==1.0.4
 Sphinx==3.5.4
 sphinxcontrib-applehelp==1.0.4
 sphinxcontrib-devhelp==1.0.2
