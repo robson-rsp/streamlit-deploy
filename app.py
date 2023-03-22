@@ -1,7 +1,7 @@
 from sklearn.base     import BaseEstimator, TransformerMixin
 from sklearn.ensemble import RandomForestRegressor
-import joblib
 import pandas as pd
+import pickle as pkl
 import streamlit as st
 
 
@@ -54,11 +54,9 @@ class OutliersZScoreReplacer(BaseEstimator, TransformerMixin):
 
 
 
-model    = joblib.load('model.pkl.z')
-pipeline = joblib.load('pipeline.pkl.z')
+model    = pkl.load(open('model_rforest.pkl', 'rb'))
+pipeline = pkl.load(open('pipeline_transformer.pkl', 'rb'))
 
-if isinstance(model, str):
-    model = joblib.load(model)
 
 @st.cache_data
 def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, enginesize, brand):
