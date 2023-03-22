@@ -1,4 +1,5 @@
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.base     import BaseEstimator, TransformerMixin
+from sklearn.ensemble import RandomForestRegressor
 import joblib
 import pandas as pd
 import streamlit as st
@@ -74,7 +75,7 @@ def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, en
     print(X)
     print(str(type(model)))
     #return model.predict(X)
-    return str(X)
+    return str(type(model))
 
 
 
