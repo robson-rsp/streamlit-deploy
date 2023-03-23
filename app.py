@@ -1,7 +1,7 @@
 from sklearn.base     import BaseEstimator, TransformerMixin
 from sklearn.ensemble import RandomForestRegressor
+import joblib
 import pandas as pd
-import pickle as pkl
 import streamlit as st
 
 
@@ -54,8 +54,8 @@ class OutliersZScoreReplacer(BaseEstimator, TransformerMixin):
 
 
 
-model_rforest        = pkl.load(open('model_rforest.pkl', 'rb'))
-pipeline_transformer = pkl.load(open('pipeline_transformer.pkl', 'rb'))
+model_rforest        = joblib.load('rforest.pkl.z')
+pipeline_transformer = joblib.load('pipeline_transformer.pkl.z')
 
 
 @st.cache_data
@@ -94,7 +94,7 @@ def main():
 
   if st.button('Definir preço'):
     result = prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, enginesize, brand)
-    st.success(f'O preço sugerido é R${result}')
+    st.success(f'O preço sugerido é R$ {result:.2f}')
 
 
 
