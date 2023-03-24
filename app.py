@@ -76,8 +76,8 @@ def prediction(model, year, price, transmission, mileage, fueltype, tax, mpg, en
 
 
 def main():
-  html_temp = """<div style="background-color:yellow; padding:13px>
-                     <h1 style="color:black;text-align:center;">Streamlit - Car pricing - ML App</h1>
+  html_temp = """<div style="background-color:#5F9EA0; padding:13px">
+                     <h1 style="color:clack;text-align:center;">Streamlit - Car pricing - ML App</h1>
                  </div>"""
   st.markdown(html_temp, unsafe_allow_html=True)
 
