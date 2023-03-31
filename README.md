@@ -15,6 +15,8 @@ Você deseja vender seu carro, mas não sabe definir um preço justo? Esta aplic
 * Scikit Learn - 1.2.2
 
 **Obs. O conjunto de dados é europeu, portanto todas as unidades de medida são europeias.**
-
+___
 **Fonte:**
 [Kaggle](https://www.kaggle.com/datasets/adityadesai13/used-car-dataset-ford-and-mercedes)
+
+**Autor:** Robson de Souza Pedroso
