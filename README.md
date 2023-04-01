@@ -1,5 +1,6 @@
-# 100,000 UK Used Car Data set
 ![GitHub](https://img.shields.io/github/license/robson-rsp/streamlit-deploy)
+___
+# 100,000 UK Used Car Data set
 
 # Sobre o projeto
 Demonstração de como é feito o deploy de um aplicativo web com Machine Learning utilizando o framework Streamlit.
@@ -19,4 +20,4 @@ ___
 **Fonte:**
 [Kaggle](https://www.kaggle.com/datasets/adityadesai13/used-car-dataset-ford-and-mercedes)
 
-**Autor:** Robson de Souza Pedroso
+**Autor:** Robson Pedroso
